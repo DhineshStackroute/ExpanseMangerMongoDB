@@ -15,9 +15,9 @@ const ExpanseSchema= new Schema({
         type:Number,
         require:true
     },
-    spendon:{
+    spenon:{
         type:Date,
-        default:Date.now
+        default:Date.now()
     }
 
 })

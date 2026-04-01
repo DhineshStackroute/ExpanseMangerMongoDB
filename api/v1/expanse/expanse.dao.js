@@ -3,33 +3,29 @@
 // access Expanse Model
 const expanseModel = require('./expanse.entity')
 // import { v4 as uuidv4 } from 'uuid';
-const uuidv4 = require('uuid')
+const uuid = require('uuid');
 
 
-function addExapnseToDB(expaseDetails) {
+ 
 
-    console.log("expanse",expaseDetails)
-    return new Promise((resolve, reject) => {
-    
-        let newExapnse = new expanseModel();
-        newExapnse.expenseId = "6d785e23-e297-4cff-9317-dc9f01803ecb";
-        newExapnse.exapnseDetails = exapnseDetails.name;
-        newExapnse.amount = exapnseDetails.amount;
-        newExapnse.spendon= Date.now();
-        console.log("newExapnse", newExapnse)
-        newExapnse.save((error, addedExapnse) => {
-            if (error) {
-                reject({ message: "Internal Server Error", status: 500 });
-            }
-            else
-            {
-                resolve({message:"Expanse Added Sucessfully", status:201, ExpaneInfo: addedExapnse.expenseId})
-            }
-        })
+async function addExapnseToDB(expenseDetails) {
+    console.log("expanse", expenseDetails);
+    let newExpense = new expanseModel({
+        expenseId: uuid.v4(),
+        exapnseDetails: expenseDetails.name,
+        amount: expenseDetails.amount,
+        // other fields...
+    });
 
-    })
-
+    try {
+        const response = await newExpense.save();
+        
+        return response;
+    } catch (err) {
+        throw err;
+    }
 }
+
 function getAllExpansesFromDb() {
 
 }

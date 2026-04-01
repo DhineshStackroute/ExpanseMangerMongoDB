@@ -13,13 +13,12 @@ router.post("/", (req, res) => {
         }
         else {
             // call the controller and send the req.body
-            expanseController.addExapnse(JSON.stringify(req.body))
+            expanseController.addExapnse(req.body)
                 .then((response) => {
-                    res.status(response.status).send(response);
-                },
-                    (err) => {
-                        res.status(err.status).send(err);
-                    });
+                    // res.status(200).send(response);
+                    res.send(response);
+                })
+                    
         }
 
     }
