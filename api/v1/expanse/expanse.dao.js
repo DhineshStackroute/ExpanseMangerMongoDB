@@ -26,8 +26,14 @@ async function addExapnseToDB(expenseDetails) {
     }
 }
 
-function getAllExpansesFromDb() {
+async function getAllExpansesFromDb() {
 
+    try {
+        const response = await expanseModel.find();
+        return response;
+    } catch (err) {
+        throw err;
+    }
 }
 
 module.exports = {

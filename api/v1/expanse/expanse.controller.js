@@ -7,6 +7,11 @@ function addExapnse(expansefromclient) {
     return expanseDAO.addExapnseToDB(expansefromclient);
 }
 
+function getExpanses(){
+    return expanseDAO.getAllExpansesFromDb();   
+}
+
 module.exports = {
-    addExapnse
+    addExapnse,
+    getExpanses
 }

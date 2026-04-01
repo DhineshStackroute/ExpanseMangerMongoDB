@@ -31,7 +31,10 @@ router.post("/", (req, res) => {
 })
 
 router.get('/',(req,res)=>{
-    res.send("Hello From Expanse");
+    expanseController.getExpanses()
+    .then((response)=>{
+        res.send(response);
+    })
 })
 
 
