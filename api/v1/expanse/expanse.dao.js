@@ -4,6 +4,7 @@
 const expanseModel = require('./expanse.entity')
 // import { v4 as uuidv4 } from 'uuid';
 const uuid = require('uuid');
+const logger = require('../../../logger');
 
 
  
@@ -19,9 +20,10 @@ async function addExapnseToDB(expenseDetails) {
 
     try {
         const response = await newExpense.save();
-        
+        logger.info(response);
         return response;
     } catch (err) {
+        logger.error(err);
         throw err;
     }
 }

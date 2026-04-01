@@ -1,6 +1,8 @@
 // include db
 const db= require('./db');
 const bodyparser= require('body-parser')
+const logger= require('./logger')
+
 
 const api= require('./api/v1')
 
@@ -9,6 +11,7 @@ const api= require('./api/v1')
 
 
 const connectToDatabase= ()=>{
+    logger.info("Connecting to Database");
     db.createMongoConnection();
     dbConnection= db.getMongoConnection();
 }
@@ -16,6 +19,7 @@ const connectToDatabase= ()=>{
 // set the middleware required for app
 
 const setMiddleWare=(app)=>{
+    logger.info("Setting Middleware");
     app.use(bodyparser.json());
     app.use(bodyparser.urlencoded({extended:false}))
 }
@@ -23,6 +27,7 @@ const setMiddleWare=(app)=>{
 // set the application middleware
 
 const apiSetUp=(app)=>{
+    logger.info("Setting API");
     app.use('/api/v1/', api);
 }
 
